@@ -1,7 +1,7 @@
 const urlBase = 'http://localhost:4000/api';
 
 export function api (service, body){
-    return   fetch(
+    return    fetch(
         `${urlBase}/${service}`,
         {
         method: 'POST',

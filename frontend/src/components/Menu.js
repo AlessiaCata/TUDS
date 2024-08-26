@@ -65,7 +65,7 @@ export default Menu;
 
 
 
-{/*const Menu = ({ menuVisibility }) => {
+/*const Menu = ({ menuVisibility }) => {
   return (
     <div id="mainMenu" style={{ display: menuVisibility ? 'block' : 'none' }}>
       <Link to="/UserList">Usuarios</Link>
@@ -76,4 +76,4 @@ export default Menu;
   );
 }; 
 
-export default Menu; */}
+export default Menu; */

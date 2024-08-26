@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import NoEmptyError from './NoEmptyError';
 import { api } from '../lib/api';
-import Switch from '@mui/material/Switch'; 
 import "../css/Login.css";
-
-
 
 const Login = () => {
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword /*, setShowPassword */] = useState(false);
 
   function login(evt) {
     evt.preventDefault();
@@ -38,9 +35,9 @@ const Login = () => {
     console.log(data);
   }
 
-  const handleToggleShowPassword = () => {
+  /* const handleToggleShowPassword = () => {
     setShowPassword(!showPassword);
-  };
+  }; */
 
   return (
     <div id="login" className='LoginDIV'>
