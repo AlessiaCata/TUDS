@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "eslint",
+			"path": "backend",
+			"problemMatcher": [],
+			"label": "Eslint en el backend",
+			"detail": "eslint ."
+		}
+	]
+}

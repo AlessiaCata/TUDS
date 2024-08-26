@@ -1,0 +1,38 @@
+components:
+  schemas:
+    Login:
+      type: object
+      properties:
+        username:
+          type: string
+          required: true
+          example: test
+        password:
+          type: string
+          required: true
+          example: 1234
+
+    AuthorizationToken:
+      properties:
+        bearer:
+          type: string
+
+/login:
+  post:
+    tags:
+      - Login
+    summary: Login into system
+    consumes:
+      - application/json
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Login'
+    responses:
+      '204':
+        description: No content
+        $ref: '#/components/schemas/AuthorizationToken'
+      '400':
+        description: parameters error
