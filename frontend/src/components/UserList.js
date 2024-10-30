@@ -101,6 +101,20 @@ const UserListBody = () => {
               </td>
             </tr>
           )}
+          {/* Nueva fila estática para Pedro */}
+          <tr>
+            <td>Pedro</td>
+            <td>Pedro Pe</td>
+            <td className="center">
+              <SvgIcon className="error icon" component={IconDisable} /> {/* Cruz roja para "Deshabilitado" */}
+            </td>
+            <td></td> {/* Sin roles */}
+            <td className="actions">
+              <IconEnable className="icon button" title="Habilitar" />
+              <IconEdit className="icon button" title="Modificar" />
+              <IconDelete className="icon button" title="Borrar" />
+            </td>
+          </tr>
           {filas.length === 0 && (
             <tr>
               <td colSpan="5" className="center">Cargando usuarios...</td>
