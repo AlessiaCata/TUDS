@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { api } from '../lib/api';
+import { Api } from '../lib/Api';
+import Header from './Header';
+import "../css/UserList.css";
 import SvgIcon from '@mui/material/SvgIcon';
 import IconDelete from '@mui/icons-material/Delete';
 import IconEdit from '@mui/icons-material/Edit';
@@ -9,7 +11,7 @@ import IconDisable from '@mui/icons-material/Cancel';
 import IconAdd from '@mui/icons-material/Add';
 import IconUsers from '@mui/icons-material/People';
 
-const UserList = () => {
+const UserListBody = () => {
   const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
 
@@ -20,7 +22,7 @@ const UserList = () => {
       return;
     }
 
-    api('user', 'GET')
+    Api('user', 'GET')
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -55,11 +57,10 @@ const UserList = () => {
             </tr>
           );
         });
-        setFilas(userRows); // Asignar las filas aquí
+        setFilas(userRows);
       })
       .catch(error => {
         console.error("Error fetching users:", error);
-        // Mostrar mensaje de error al usuario
       });
   }, [navigate]);
 
@@ -83,11 +84,39 @@ const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {filas.length > 0 ? filas : <tr><td colSpan="5">Cargando usuarios...</td></tr>}
+          {filas.length > 0 ? (
+            filas
+          ) : (
+            <tr>
+              <td>admin</td>
+              <td>Administrador</td>
+              <td className="center">
+                <SvgIcon className="success icon" component={IconEnable} />
+              </td>
+              <td>admin</td>
+              <td className="actions">
+                <IconDisable className="icon button" title="Deshabilitar" />
+                <IconEdit className="icon button" title="Modificar" />
+                <IconDelete className="icon button" title="Borrar" />
+              </td>
+            </tr>
+          )}
+          {filas.length === 0 && (
+            <tr>
+              <td colSpan="5" className="center">Cargando usuarios...</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
   );
 };
+
+const UserList = () => (
+  <div>
+    <Header />
+    <UserListBody />
+  </div>
+);
 
 export default UserList;

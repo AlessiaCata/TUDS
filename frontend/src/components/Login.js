@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import NoEmptyError from './NoEmptyError';
-import { api } from '../lib/api';
+import { Api } from '../lib/Api';
 import "../css/Login.css";
 
 const Login = () => {
@@ -21,7 +21,7 @@ const Login = () => {
     evt.preventDefault();
     try {
       const data = { username, password };
-      const res = await api('Login', data);
+      const res = await Api('Login', data);
       const json = await res.json();
 
       if (json.error) {

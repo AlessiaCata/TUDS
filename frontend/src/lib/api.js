@@ -1,6 +1,6 @@
 const urlBase = 'http://localhost:4000/api';
 
-export function api (service, body){
+export function Api (service, body){
     return    fetch(
         `${urlBase}/${service}`,
         {

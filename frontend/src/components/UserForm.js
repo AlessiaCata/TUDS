@@ -1,7 +1,7 @@
 import React from 'react';
+import Header from './Header';
 
-
-const UserForm = () => {
+const UserFormBody = () => {
   return (
     <div>
       Formulario de usuario TBC
@@ -9,4 +9,11 @@ const UserForm = () => {
   );
 };
 
+const UserForm = () => (
+  <div>
+    <Header/>
+    <UserFormBody/>
+
+  </div>
+);
 export default UserForm;
