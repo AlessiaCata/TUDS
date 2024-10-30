@@ -1,12 +1,11 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import './css/style.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Header from './components/TopHeader'; 
+
 
 const theme = createTheme();
 
@@ -16,6 +15,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
+        <Header /> 
         <App />
       </ThemeProvider>
     </BrowserRouter>

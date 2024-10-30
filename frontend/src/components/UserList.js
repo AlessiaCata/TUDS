@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../lib/api';
 import SvgIcon from '@mui/material/SvgIcon';
 import IconDelete from '@mui/icons-material/Delete';
@@ -11,48 +11,57 @@ import IconUsers from '@mui/icons-material/People';
 
 const UserList = () => {
   const [filas, setFilas] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    api('user', 'GET')
-      .then(res => res.json())
-      .then(userList => {
-        setFilas(userList.map(user => {
-          let check, enabled, color;
+    const token = localStorage.getItem("authorizationToken");
+    if (!token) {
+      navigate("/login");
+      return;
+    }
 
-          if (user.isEnabled) {
-            check = IconDisable;
-            enabled = IconEnable;
-            color = 'success';
-          } else {
-            check = IconEnable;
-            enabled = IconDisable;
-            color = 'error';
-          }
+    api('user', 'GET')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(userList => {
+        const userRows = userList.map(user => {
+          const checkIcon = user.isEnabled ? IconDisable : IconEnable;
+          const enabledIcon = user.isEnabled ? IconEnable : IconDisable;
+          const color = user.isEnabled ? 'success' : 'error';
 
           return (
             <tr key={user.uuid}>
               <td>{user.username}</td>
               <td>{user.displayName}</td>
               <td className="center">
-                <SvgIcon className={color + " icon"} component={enabled} />
+                <SvgIcon className={`${color} icon`} component={enabledIcon} />
               </td>
-              <td>{user.roles}</td>
+              <td>{user.roles.join(', ')}</td>
               <td className="actions">
-                <a href="/user">
-                  <SvgIcon className="icon button" component={check} />
-                </a>
-                <a href="/user">
+                <Link to={`/user/${user.uuid}/enable`}>
+                  <SvgIcon className="icon button" component={checkIcon} />
+                </Link>
+                <Link to={`/user/${user.uuid}/edit`}>
                   <IconEdit className="icon button" />
-                </a>
-                <a href="/user">
+                </Link>
+                <Link to={`/user/${user.uuid}/delete`}>
                   <IconDelete className="icon button" />
-                </a>
+                </Link>
               </td>
             </tr>
           );
-        }));
+        });
+        setFilas(userRows); // Asignar las filas aquí
+      })
+      .catch(error => {
+        console.error("Error fetching users:", error);
+        // Mostrar mensaje de error al usuario
       });
-  }, []);
+  }, [navigate]);
 
   return (
     <div>
@@ -74,7 +83,7 @@ const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {filas}
+          {filas.length > 0 ? filas : <tr><td colSpan="5">Cargando usuarios...</td></tr>}
         </tbody>
       </table>
     </div>
