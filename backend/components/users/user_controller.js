@@ -1,9 +1,8 @@
 import { Dependency } from '../../libs/dependency.js';
 
 export class UserController {
-  constructor(){
+  constructor() {
     this.userService = Dependency.get('userService');
-    
   }
 
   async get(req, res) {
@@ -11,10 +10,20 @@ export class UserController {
     res.send(userList);
   }
 
-  async post(req,res){
+  async post(req, res) {
     await this.userService.create(req.body);
     res.status(204).end();
   }
+
+  async patch(req, res) {
+    const { uuid } = req.params;
+    await this.userService.update(uuid, req.body);
+    res.status(200).end();
+  }
+
+  async delete(req, res) {
+    const { uuid } = req.params;
+    await this.userService.delete(uuid);
+    res.status(200).end();
+  }
 }
-
-

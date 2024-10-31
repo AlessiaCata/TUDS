@@ -10,35 +10,23 @@ export class UserService {
   }
 
   async getList(filters, option) {
-    return this.userData.getList(filters,option);
+    return this.userData.getList(filters, option);
   }
 
   async getForUsernameOrNull(username) {
-    const userList = await this.userData.getList({username});
-    if(userList.length){
-      return userList[0];
-    }
-    return null;
-
+    const userList = await this.userData.getList({ username });
+    return userList.length ? userList[0] : null;
   }
 
   async getForUuidOrNull(uuid) {
-    const userList = await this.userData.getList({uuid});
-    if(userList.length){
-      return userList[0];
-    }
-    return null;
-
+    const userList = await this.userData.getList({ uuid });
+    return userList.length ? userList[0] : null;
   }
 
-  async hashPassword(password){
+  async hashPassword(password) {
     const saltRounds = 10;
-
     const salt = await bcrypt.genSalt(saltRounds);
-    const hash = await bcrypt.hash(password, salt);
-
-    return hash;
-   
+    return bcrypt.hash(password, salt);
   }
 
   async checkPassword(password, hash) {
@@ -49,26 +37,34 @@ export class UserService {
     if (!data?.username) {
       throw new MissingParameterError('username');
     }
-
     if (!data.displayName) {
       throw new MissingParameterError('displayName');
     }
-
     if (!data.password) {
       throw new Error('Password');
     }
-
     if (await this.getForUsernameOrNull(data.username)) {
       throw new ConflictError('El usuario ya existe.');
     }
 
     data.uuid = uuid.v4();
-
     data.hashedPassword = await this.hashPassword(data.password);
     delete data.password;
 
     this.userData.create(data);
   }
-}
 
+  async toggleEnabled(uuid) {
+    const user = await this.getForUuidOrNull(uuid);
+    if (!user) {
+      throw new Error('Usuario no encontrado');
+    }
+
+    // Cambia el estado de habilitado/deshabilitado
+    user.isEnabled = !user.isEnabled;
+    await this.userData.update(user.uuid, { isEnabled: user.isEnabled });
+
+    return user;
+  }
+}
 

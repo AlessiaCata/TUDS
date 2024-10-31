@@ -7,20 +7,25 @@ export const UserModel = mongoose.model(
     username: String,
     displayName: String,
     hashedPassword: String,
-    isEnabled: Boolean, 
+    isEnabled: Boolean,
     roles: String,
   })
 );
 
 export class UserMongo {
-  async getList(filters, /*options*/) {
+  async getList(filters) {
     return UserModel.find(filters).exec();
   }
 
   async create(userData) {
-     
-      return await UserModel.create(userData);
-    
-    
+    return await UserModel.create(userData);
+  }
+
+  async update(uuid, data) {
+    return await UserModel.updateOne({ uuid }, data);
+  }
+
+  async delete(uuid) {
+    return await UserModel.deleteOne({ uuid });
   }
 }

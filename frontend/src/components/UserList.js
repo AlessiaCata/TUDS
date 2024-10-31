@@ -70,7 +70,7 @@ const UserListBody = () => {
         <caption>
           <IconUsers className="icon" />
           Usuarios
-          <Link to='/user-form'>
+          <Link to='/userform'>
             <IconAdd className="icon button" alt="agregar" title="Agregar usuario" />
           </Link>
         </caption>
