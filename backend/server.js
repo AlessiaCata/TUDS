@@ -10,7 +10,7 @@ configureDependencies();
 
 const conf = Dependency.get('conf');
 
-mongoose.connect(conf.db, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(conf.db)
   .then(() => console.log('Conexión a MongoDB exitosa'))
   .catch(err => console.error('Error al conectar a MongoDB', err));
 

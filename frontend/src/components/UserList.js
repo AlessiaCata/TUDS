@@ -22,7 +22,7 @@ const UserListBody = () => {
       return;
     }
 
-    Api('user', 'GET')
+    Api.get('user')
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
