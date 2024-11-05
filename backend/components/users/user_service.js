@@ -33,6 +33,8 @@ export class UserService {
     return bcrypt.compare(password, hash);
   }
 
+  ////////////////////////////////////////////////////77
+  
   async create(data) {
     if (!data?.username) {
       throw new MissingParameterError('username');
@@ -53,6 +55,15 @@ export class UserService {
 
     this.userData.create(data);
   }
+
+  ////////////////////////////////////////////////////////////7
+  async deleteForUuid(uuid){
+    const data ={};
+    data.deletedAt = new Date;
+    return this.userData.update({uuid}, data);       
+}
+
+/////////////////////////////////////////////////////////////////
 
   async toggleEnabled(uuid) {
     const user = await this.getForUuidOrNull(uuid);

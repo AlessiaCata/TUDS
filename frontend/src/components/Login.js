@@ -4,12 +4,12 @@ import NoEmptyError from './NoEmptyError';
 import { Api } from '../lib/Api';
 import "../css/Login.css";
 
-const Login = () => {
+const Login = ({ setRoles }) => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Instanciar navigate
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -19,18 +19,32 @@ const Login = () => {
 
   const login = async (evt) => {
     evt.preventDefault();
+
+    const body = { username, password };
+
     try {
-      const data = { username, password };
-      const res = await Api('Login', data);
+      const res = await Api.post('login', { body, autoCheck: false });
       const json = await res.json();
 
       if (json.error) {
         setError(json.message);
       } else {
-        localStorage.setItem("authorizationToken", json.authorizationToken);
-        localStorage.setItem("roles", JSON.stringify(json.roles));
-        setError(""); // Limpiar error
-        navigate("/UserList"); // Redirigir a UserList
+        const auth = 'Bearer ' + json.authorizationToken;
+        const roles = json.roles || [];
+        const userUuid = json.uuid;
+
+        // Guardar datos en localStorage
+        localStorage.setItem('Authorization', auth);
+        localStorage.setItem('roles', JSON.stringify(roles));
+        localStorage.setItem('uuid', userUuid);
+
+        // Configurar encabezado de autorización
+        Api.defaultHeaders.Authorization = auth;
+        setRoles(roles);
+
+        // Limpiar error y redirigir
+        setError("");
+        navigate(-1); // Navegar al perfil del usuario
       }
     } catch (e) {
       setError(e.message || String(e));
@@ -48,6 +62,8 @@ const Login = () => {
             value={username}
             onChange={handleInputChange}
             className="text_input"
+            placeholder="Usuario"
+            required
           />
         </div>
         <div className="text_area">
@@ -57,6 +73,8 @@ const Login = () => {
             value={password}
             onChange={handleInputChange}
             className="text_input"
+            placeholder="Contraseña"
+            required
           />
           <button
             type="button"
@@ -71,7 +89,6 @@ const Login = () => {
         <a className="link" href="/signup">Registrarse</a>
       </form>
     </div>
-
   );
 };
 
