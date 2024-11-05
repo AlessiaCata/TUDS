@@ -5,12 +5,11 @@ import { Api } from '../lib/Api';
 import Header from './Header';
 import "../css/UserForm.css";
 
-
 const UserFormBody = ({ onUserAdded }) => {
   const [username, setUsername] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
-  const [roles, setRoles] = useState('');
+  const [roles, setRoles] = useState('user'); // Establecer un valor por defecto
   const [isEnabled, setIsEnabled] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -69,13 +68,15 @@ const UserFormBody = ({ onUserAdded }) => {
           />
         </label>
         <label>
-          Roles (separados por coma):
-          <input 
-            type="text" 
+          Roles:
+          <select 
             value={roles} 
             onChange={(e) => setRoles(e.target.value)} 
-            required 
-          />
+            required
+          >
+            <option value="user">Usuario</option>
+            <option value="admin">Administrador</option>
+          </select>
         </label>
         <label>
           Habilitado:
@@ -100,4 +101,3 @@ const UserForm = ({ onUserAdded }) => (
 );
 
 export default UserForm;
-

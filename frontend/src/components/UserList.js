@@ -50,10 +50,7 @@ const UserListBody = () => {
               </td>
               <td>{rolesDisplay}</td> {/* Muestra roles aquí */}
               <td className="actions">
-                <Link to={`/user/${user.uuid}/enable`}>
-                  <SvgIcon className="icon button" component={checkIcon} />
-                </Link>
-                <Link to={`/user/${user.uuid}/edit`}>
+                <Link to={`/EditUsuario/${user.uuid}/edit`}>
                   <IconEdit className="icon button" />
                 </Link>
                 <IconDelete 
