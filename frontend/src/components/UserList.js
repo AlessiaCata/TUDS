@@ -10,13 +10,16 @@ import IconEnable from '@mui/icons-material/CheckCircle';
 import IconDisable from '@mui/icons-material/Cancel';
 import IconAdd from '@mui/icons-material/Add';
 import IconUsers from '@mui/icons-material/People';
+import ModalYesNo from './ModalYesNo'; // Asegúrate de tener este componente para la confirmación de eliminación
 
 const UserListBody = () => {
   const [filas, setFilas] = useState([]);
   const navigate = useNavigate();
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [deletingUuid, setDeletingUuid] = useState('');    
 
   useEffect(() => {
-    const token = localStorage.getItem("authorizationToken");
+    const token = localStorage.getItem("Authorization");
     if (!token) {
       navigate("/login");
       return;
@@ -35,6 +38,9 @@ const UserListBody = () => {
           const enabledIcon = user.isEnabled ? IconEnable : IconDisable;
           const color = user.isEnabled ? 'success' : 'error';
 
+          // Asegúrate de que roles sea un array antes de llamar a join
+          const rolesDisplay = Array.isArray(user.roles) ? user.roles.join(', ') : user.roles || '';
+
           return (
             <tr key={user.uuid}>
               <td>{user.username}</td>
@@ -42,7 +48,7 @@ const UserListBody = () => {
               <td className="center">
                 <SvgIcon className={`${color} icon`} component={enabledIcon} />
               </td>
-              <td>{user.roles}</td>
+              <td>{rolesDisplay}</td> {/* Muestra roles aquí */}
               <td className="actions">
                 <Link to={`/user/${user.uuid}/enable`}>
                   <SvgIcon className="icon button" component={checkIcon} />
@@ -50,9 +56,10 @@ const UserListBody = () => {
                 <Link to={`/user/${user.uuid}/edit`}>
                   <IconEdit className="icon button" />
                 </Link>
-                <Link to={`/user/${user.uuid}/delete`}>
-                  <IconDelete className="icon button" />
-                </Link>
+                <IconDelete 
+                  className="icon button" 
+                  onClick={(e) => deleteUser(e, user.uuid)} 
+                />
               </td>
             </tr>
           );
@@ -63,6 +70,25 @@ const UserListBody = () => {
         console.error("Error fetching users:", error);
       });
   }, [navigate]);
+
+  function deleteUser(e, uuid) {
+    e.preventDefault();
+    setDeletingUuid(uuid);
+    setShowDeleteConfirmation(true);
+  }
+
+  function deleteCurrentUserUuid() {
+    setShowDeleteConfirmation(false);
+    Api.delete('user', { search: { uuid: deletingUuid } })
+      .then(() => {
+        alert('Usuario eliminado');
+        // Lógica para recargar la lista de usuarios, si es necesario
+        // Puedes volver a llamar a la API para obtener la lista actualizada
+      })
+      .catch(e => {
+        console.error("Error deleting user:", e);
+      });
+  }
 
   return (
     <div>
@@ -88,27 +114,17 @@ const UserListBody = () => {
             filas
           ) : (
             <tr>
-              <td>admin</td>
-              <td>Administrador</td>
-              <td className="center">
-                <SvgIcon className="success icon" component={IconEnable} />
-              </td>
-              <td>admin</td>
-              <td className="actions">
-                <IconDisable className="icon button" title="Deshabilitar" />
-                <IconEdit className="icon button" title="Modificar" />
-                <IconDelete className="icon button" title="Borrar" />
-              </td>
-            </tr>
-          )}
-         
-          {filas.length === 0 && (
-            <tr>
               <td colSpan="5" className="center">Cargando usuarios...</td>
             </tr>
           )}
         </tbody>
       </table>
+      <ModalYesNo
+                message= "Desea eliminar el usuario?"
+                show={showDeleteConfirmation}
+                onYes={deleteCurrentUserUuid}
+                onNo={() => setShowDeleteConfirmation(false)}
+            />
     </div>
   );
 };

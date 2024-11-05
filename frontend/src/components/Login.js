@@ -44,7 +44,7 @@ const Login = ({ setRoles }) => {
 
         // Limpiar error y redirigir
         setError("");
-        navigate(-1); // Navegar al perfil del usuario
+        navigate("/userlist"); // Navegar al perfil del usuario
       }
     } catch (e) {
       setError(e.message || String(e));

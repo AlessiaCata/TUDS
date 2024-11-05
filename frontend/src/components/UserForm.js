@@ -5,7 +5,6 @@ import { Api } from '../lib/Api';
 import Header from './Header';
 import "../css/UserForm.css";
 
-const defaultProfilePictureUrl = 'https://i.imgur.com/pK8ulIv.png';
 
 const UserFormBody = ({ onUserAdded }) => {
   const [username, setUsername] = useState('');
@@ -13,7 +12,6 @@ const UserFormBody = ({ onUserAdded }) => {
   const [password, setPassword] = useState('');
   const [roles, setRoles] = useState('');
   const [isEnabled, setIsEnabled] = useState(true);
-  const [profilePictureUrl, setProfilePictureUrl] = useState(defaultProfilePictureUrl);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -26,7 +24,6 @@ const UserFormBody = ({ onUserAdded }) => {
       password,
       roles, 
       isEnabled,
-      profilePicture: profilePictureUrl
     };
 
     Api.fetch('user', { method: 'POST', body: JSON.stringify(newUser), headers: { 'Content-Type': 'application/json' } })

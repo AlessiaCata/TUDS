@@ -1,4 +1,5 @@
 import { Dependency } from '../../libs/dependency.js';
+import { checkPermission } from '../../libs/CheckPermission.js';
 
 export class UserController {
   constructor() {
@@ -23,15 +24,15 @@ export class UserController {
 
   ////////////////////////////////////////////
 
-  async delete(req, res) {
-    const { uuid } = req.params;
-    await this.userService.delete(uuid);
-    res.status(200).end();
-  }
-
-  //async delete(req,res){
-    //checkPermission(req, ['user', 'admin']);
-    //await this.userService.deleteForUuid(req.query.uuid);
-    //res.status(204).end();
+  //async delete(req, res) {
+    //const { uuid } = req.params;
+    //await this.userService.delete(uuid);
+    //res.status(200).end();
   //}
+
+  async delete(req,res){
+   // checkPermission(req, ['user', 'admin']);
+    await this.userService.deleteForUuid(req.query.uuid);
+    res.status(204).end();
+  }
 }
