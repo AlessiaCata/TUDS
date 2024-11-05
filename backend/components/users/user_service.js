@@ -77,5 +77,15 @@ export class UserService {
 
     return user;
   }
+
+////////////////////////////////////////////////////////
+
+async update(uuid, data) {
+  
+  data = { ...data };
+  data.updatedAt = new Date();
+  return this.petData.update({ uuid }, data);
+}
+
 }
 

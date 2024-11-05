@@ -4,6 +4,7 @@ import { Api } from './lib/Api';
 import UserForm from './components/UserForm';
 import Login from './components/Login';
 import UserList from './components/UserList';
+import EditUsuarios from './components/EditUsuarios';
 
 function App() {
   const [roles, setRoles] = useState([]);
@@ -27,11 +28,15 @@ function App() {
         <Route path="/login" element={<Login setRoles={setRoles} />} />
         <Route path="/userform" element={<UserForm />} />
         <Route path="/userlist" element={<UserList />} />
+        <Route path="/EditUsuario/:uuid/edit" element={<EditUsuarios />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+
+
+
 
 

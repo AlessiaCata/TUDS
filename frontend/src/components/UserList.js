@@ -32,6 +32,7 @@ const UserListBody = () => {
         }
         return res.json();
       })
+      
       .then(userList => {
         const userRows = userList.map(user => {
           const checkIcon = user.isEnabled ? IconDisable : IconEnable;
@@ -50,7 +51,7 @@ const UserListBody = () => {
               </td>
               <td>{rolesDisplay}</td> {/* Muestra roles aquí */}
               <td className="actions">
-                <Link to={`/EditUsuario/${user.uuid}/edit`}>
+              <Link to={`/EditUsuario/${user.uuid}/edit`}>
                   <IconEdit className="icon button" />
                 </Link>
                 <IconDelete 

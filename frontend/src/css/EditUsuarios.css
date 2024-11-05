@@ -1,0 +1,66 @@
+/* src/components/EditUsuarios.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+  }
+  
+  .edit-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #4a90e2;
+    margin-bottom: 1rem;
+  }
+  
+  .error {
+    color: #e74c3c;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+  }
+  
+  .form-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+  
+  .form-button button {
+    background-color: #4a90e2;
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-button button:hover {
+    background-color: #357abd;
+  }
+  
+  .cancel-button {
+    background-color: #e74c3c;
+  }
+  
+  .cancel-button:hover {
+    background-color: #c0392b;
+  }
+  
