@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { Dependency } from './libs/dependency.js';
+import jwt from 'jsonwebtoken';
 
 export function configureMiddlewares(app) {
 
@@ -37,13 +38,13 @@ export function configureMiddlewares(app) {
 }
 
 function autorizationMiddleware(req, res, next){
- if(!req.headers.autorization) {
+ if(!req.headers.authorization) {
   next();
   return;
  }
  
  const auth = req.headers.authorization;
- if (auth.substr(0,7).toLowerCase() != 'bearer') {
+ if (auth.substr(0,7).toLowerCase() != 'bearer ') {
   throw new InvalidAuthorizationSchemaError();
  }
 
@@ -53,7 +54,7 @@ function autorizationMiddleware(req, res, next){
  }
 
  const conf = Dependency.get('conf');
- Jwt.verify(
+ jwt.verify(
   token,
   conf.jwtPassword,
   async (err,data) => {

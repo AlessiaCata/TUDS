@@ -53,7 +53,7 @@ const UserListBody = () => {
               </td>
               <td>{rolesDisplay}</td>
               <td className="actions">
-                <Link to={`/EditUsuario/${user.uuid}/edit`}>
+                <Link to={`/UserForm/${user.uuid}`}>
                   <IconEdit className="icon button" />
                 </Link>
                 <IconDelete 

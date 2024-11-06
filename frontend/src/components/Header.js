@@ -24,7 +24,7 @@ const Header = () => {
           {roles.includes("admin") && (
             <>
               <li><Link to="/UserList" className='item1'>Usuarios</Link></li>
-              <li><Link to="/UserForm" className='item3'>UserForm</Link></li>
+              <li><Link to="/UserForm" className='item3'>Agregar usuario</Link></li>
             </>
           )}
           <li><Link to="/Login" className='item2'>Login</Link></li>

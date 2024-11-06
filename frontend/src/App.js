@@ -4,7 +4,6 @@ import { Api } from './lib/Api';
 import UserForm from './components/UserForm';
 import Login from './components/Login';
 import UserList from './components/UserList';
-import EditUsuarios from './components/EditUsuarios';
 import Home from './components/Home';
 //import Home from './components/Home'; 
 
@@ -29,8 +28,8 @@ function App() {
         <Route path="/" element={<Login setRoles={setRoles} />} />
         <Route path="/login" element={<Login setRoles={setRoles} />} />
         <Route path="/userform" element={<UserForm />} />
+        <Route path="/userform/:uuid" element={<UserForm />} />
         <Route path="/userlist" element={<UserList />} />
-        <Route path="/EditUsuario/:uuid/edit" element={<EditUsuarios />} />
         <Route path="/Home" element={<Home />} />
       </Routes>
     </BrowserRouter>

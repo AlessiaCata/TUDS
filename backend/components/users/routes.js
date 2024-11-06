@@ -3,6 +3,7 @@ import { UserController } from './user_controller.js';
 
 export function configureUserRoutes(router) {
   router.get('/user', asyncHandler(UserController, 'get'));       // Para obtener la lista de usuarios
+  router.get('/user/:uuid', asyncHandler(UserController, 'get'));       // Para obtener la lista de usuarios
   router.post('/user', asyncHandler(UserController, 'post'));     // Para crear usuario
   router.patch('/user/:uuid', asyncHandler(UserController, 'patch')); // Para editar o cambiar de estado
   router.delete('/user/:uuid', asyncHandler(UserController, 'delete')); // Para eliminar usuario por UUID

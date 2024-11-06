@@ -16,7 +16,7 @@ export const UserModel = mongoose.model(
 export class UserMongo {
   async getList(filters) {
     filters ??= {}; 
-    filters.deletedAt ??= null;***************************************************************************
+    filters.deletedAt ??= null;
     return UserModel.find(filters).exec();
   }
 
