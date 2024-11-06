@@ -5,14 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { Api } from '../lib/Api';
 import Header from './Header';
 import "../css/UserForm.css";
-import { patch } from '@mui/material';
 
 const UserFormBody = () => {
-  const {uuid} = useParams();
+  const { uuid } = useParams();
   const [username, setUsername] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
-  const [roles, setRoles] = useState('user'); // Establecer un valor por defecto
+  const [roles, setRoles] = useState('user'); // Valor por defecto
   const [isEnabled, setIsEnabled] = useState(true);
   const [error, setError] = useState('');
   const [tituloDelBoton, setTituloDelBoton] = useState('Agregar usuario');
@@ -22,7 +21,7 @@ const UserFormBody = () => {
     setUsername('');
     setDisplayName('');
     setPassword('');
-    setRoles('');
+    setRoles('user');
     setIsEnabled(true);
 
     getUser(uuid);
@@ -31,24 +30,17 @@ const UserFormBody = () => {
     } else {
       setTituloDelBoton('Agregar Usuario');
     }
-
   }, [uuid]);
 
   async function getUser(uuid) {
-    if (!uuid) {
-      return;
-    }
+    if (!uuid) return;
 
     try { 
       const res = await Api.fetch(`user/${uuid}`);
-      if (!res) {
-        return;
-      }
+      if (!res) return;
 
       const list = await res.json();
-      if (!list || !list.length) {
-        return;
-      }
+      if (!list || !list.length) return;
 
       const item = list[0];
       
@@ -57,12 +49,14 @@ const UserFormBody = () => {
       setPassword('');
       setRoles(item.roles);
       setIsEnabled(item.isEnabled);
-    } catch {}
-  };
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   const handleAddUser = async (e) => {
     e.preventDefault();
-   
+
     const newUser = {
       username,
       displayName,
@@ -74,15 +68,7 @@ const UserFormBody = () => {
       newUser.password = password;
     }
 
-    let service = 'user';
-    let method = 'POST';
-
-    if (uuid) {
-      method = 'PATCH';
-      service += `/${uuid}`;
-    }
-
-    Api.fetch(service, { method, body: JSON.stringify(newUser), headers: { 'Content-Type': 'application/json' } })
+    Api.fetch('user', { method: 'POST', body: JSON.stringify(newUser), headers: { 'Content-Type': 'application/json' } })
       .then(() => {
         alert('Usuario Creado');
         navigate('/UserList');
@@ -93,11 +79,36 @@ const UserFormBody = () => {
       });
   };
 
+  const handleUpdateUser = async (e) => {
+    e.preventDefault();
+
+    const updatedUser = {
+      username,
+      displayName,
+      roles, 
+      isEnabled,
+    };
+
+    if (password) {
+      updatedUser.password = password;
+    }
+
+    Api.fetch(`user/${uuid}`, { method: 'PATCH', body: JSON.stringify(updatedUser), headers: { 'Content-Type': 'application/json' } })
+      .then(() => {
+        alert('Usuario Actualizado');
+        navigate('/UserList');
+      })
+      .catch(e => {
+        console.error(e);
+        setError(e.message);
+      });
+  };
+
   return (
     <div>
-      <form className="user-form" onSubmit={handleAddUser}>
+      <form className="user-form" onSubmit={uuid ? handleUpdateUser : handleAddUser}>
         <label>
-        Usuario:
+          Usuario:
           <input 
             type="text" 
             value={username} 
@@ -157,3 +168,4 @@ const UserForm = () => (
 );
 
 export default UserForm;
+
