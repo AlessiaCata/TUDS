@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/TopHeader.css';
+import '../css/Header.css';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

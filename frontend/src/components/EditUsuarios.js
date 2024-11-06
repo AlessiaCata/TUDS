@@ -1,11 +1,10 @@
-// src/components/UserForm.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Api } from '../lib/Api';
 import Header from './Header';
 import "../css/UserForm.css";
 
-const EditUsuarioBody= ({ onUserAdded, user = null }) => {
+const EditUsuarioBody = ({ onUserAdded, user }) => {
   const [username, setUsername] = useState(user?.username || '');
   const [displayName, setDisplayName] = useState(user?.displayName || '');
   const [password, setPassword] = useState('');
@@ -29,22 +28,22 @@ const EditUsuarioBody= ({ onUserAdded, user = null }) => {
     const userData = {
       username,
       displayName,
-      password: password || undefined, // Solo enviar contraseña si ha sido modificada
-      roles, 
+      password: password || undefined,
+      roles,
       isEnabled,
     };
 
     const requestOptions = {
-      method: user ? 'PATCH' : 'POST',
+      method: 'PATCH',
       body: JSON.stringify(userData),
       headers: { 'Content-Type': 'application/json' },
     };
 
-    const url = user ? `user/${user.uuid}` : 'user';
+    const url = `user/${user.uuid}`;
 
     try {
       await Api.fetch(url, requestOptions);
-      alert(user ? 'Usuario Actualizado' : 'Usuario Creado');
+      alert('Usuario Actualizado');
       navigate('/UserList');
       if (onUserAdded) onUserAdded();
     } catch (e) {
@@ -67,7 +66,7 @@ const EditUsuarioBody= ({ onUserAdded, user = null }) => {
             value={username} 
             onChange={(e) => setUsername(e.target.value)} 
             required 
-            disabled={!!user} // Deshabilitar campo si es edición
+            disabled
           />
         </label>
         <label>
@@ -85,7 +84,7 @@ const EditUsuarioBody= ({ onUserAdded, user = null }) => {
             type="password" 
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
-            placeholder={user ? "Dejar en blanco para mantener" : "Ingresar contraseña"}
+            placeholder="Dejar en blanco para mantener"
           />
         </label>
         <label>
@@ -108,7 +107,7 @@ const EditUsuarioBody= ({ onUserAdded, user = null }) => {
           />
         </label>
         <div className="form-buttons">
-          <button type="submit">{user ? 'Guardar Cambios' : 'Agregar Usuario'}</button>
+          <button type="submit">Actualizar Usuario</button>
           <button type="button" onClick={handleCancel}>Cancelar</button>
         </div>
       </form>
@@ -117,7 +116,7 @@ const EditUsuarioBody= ({ onUserAdded, user = null }) => {
   );
 };
 
-const EditUsuario = ({ onUserAdded, user = null }) => (
+const EditUsuario = ({ onUserAdded, user }) => (
   <div>
     <Header />
     <EditUsuarioBody onUserAdded={onUserAdded} user={user} />
@@ -125,3 +124,7 @@ const EditUsuario = ({ onUserAdded, user = null }) => (
 );
 
 export default EditUsuario;
+
+
+
+

@@ -21,6 +21,9 @@ export class UserController {
     await this.userService.update(uuid, req.body);
     res.status(200).end();
   }
+  
+  
+
 
   ////////////////////////////////////////////
 
