@@ -57,7 +57,7 @@ export class UserService {
   async deleteForUuid(uuid){
     const data ={};
     data.deletedAt = new Date();
-    return this.userData.update({uuid}, data);       
+    return this.userData.updateForUuid(uuid, data);       
   }
 
   async toggleEnabled(uuid) {

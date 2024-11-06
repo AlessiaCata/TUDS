@@ -21,21 +21,10 @@ export class UserController {
     await this.userService.update(uuid, req.body);
     res.status(200).end();
   }
-  
-  
-
-
-  ////////////////////////////////////////////
-
-  //async delete(req, res) {
-    //const { uuid } = req.params;
-    //await this.userService.delete(uuid);
-    //res.status(200).end();
-  //}
 
   async delete(req,res){
-   // checkPermission(req, ['user', 'admin']);
-    await this.userService.deleteForUuid(req.query.uuid);
+    //checkPermission(req, ['admin']);
+    await this.userService.deleteForUuid(req.params.uuid);
     res.status(204).end();
   }
 }
