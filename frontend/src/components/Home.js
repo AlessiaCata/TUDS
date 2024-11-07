@@ -3,6 +3,7 @@ import Header from './Header';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import '../css/Home.css';
+import Footer from './Footer';
 import publicidad1 from '../images/publicidad1.jpg';
 import publicidad2 from '../images/publicidad2.jpg';
 import publicidad3 from '../images/publicidad3.jpg';
@@ -73,30 +74,32 @@ const HomeBody = () => {
         </Swiper>
       </section>
 
-    <div className="contenedor-principal">
-      <div className="lado-izquierdo">
-        <h2 class="elementor-heading-title elementor-size-default" > Requisitos de adopción </h2>
-        <p>Los animales serán entregados tras una entrevista telefónica con nuestro equipo de adopción.</p>
-        <p>Los adoptantes deberán suscribir un contrato de adopción, comprometiéndose a garantizar una tenencia responsable a lo largo de la vida del animal.</p>
-        <p>Los animales mayores de 6 meses se entregarán castrados. En el caso de adoptar un cachorro más joven, el adoptante se compromete a castrarlo entre los 6 meses y el primer año de edad, de manera obligatoria.</p>
-        <p>Las adopciones están restringidas a la zona de Capital Federal y Gran Buenos Aires, Argentina, sujeto a consideración.</p>
-        <p>Nos reservamos el derecho de aprobar o rechazar una postulación según los criterios y valores de nuestra organización.</p>
-        <p>Los datos proporcionados por el postulante son confidenciales y se utilizan exclusivamente para el proceso de adopción, sin transferirse a terceros en ningún caso.</p>
-        <p> Si ya lo decidiste, y te sentís capacitado, es momento de comenzar con la postulación para elegir a tu nuevo compañero de vida.</p>
-      </div>
-      <div className="lado-derecho">
-        <img src={ffotito} alt="Imagen" className="imagen-adopcion" />
+      <div className="contenedor-principal">
+        <div className="lado-izquierdo">
+          <h2 className="elementor-heading-title elementor-size-default">Requisitos de adopción</h2>
+          <ul className="requisitos-lista">
+            <li><i className="fas fa-paw"></i> Los animales serán entregados tras una entrevista telefónica con nuestro equipo de adopción.</li>
+            <li><i className="fas fa-paw"></i> Los adoptantes deberán suscribir un contrato de adopción, comprometiéndose a garantizar una tenencia responsable a lo largo de la vida del animal.</li>
+            <li><i className="fas fa-paw"></i> Los animales mayores de 6 meses se entregarán castrados. En el caso de adoptar un cachorro más joven, el adoptante se compromete a castrarlo entre los 6 meses y el primer año de edad, de manera obligatoria.</li>
+            <li><i className="fas fa-paw"></i> Las adopciones están restringidas a la zona de Capital Federal y Gran Buenos Aires, Argentina, sujeto a consideración.</li>
+            <li><i className="fas fa-paw"></i>Nos reservamos el derecho de aprobar o rechazar una postulación según los criterios y valores de nuestra organización.</li>
+            <li><i className="fas fa-paw"></i> Los datos proporcionados por el postulante son confidenciales y se utilizan exclusivamente para el proceso de adopción, sin transferirse a terceros en ningún caso.</li>
+            <li> Si ya lo decidiste, y te sentís capacitado, es momento de comenzar con la postulación para elegir a tu nuevo compañero de vida.</li>
+          </ul>
+        </div>
+        <div className="lado-derecho">
+          <img src={ffotito} alt="Imagen" className="imagen-adopcion" />
+        </div>
       </div>
     </div>
-  </div>
   );
-  
 };
 
 const Home = () => (
   <div>
     <Header />
     <HomeBody />
+    <Footer/>
   </div>
 );
 

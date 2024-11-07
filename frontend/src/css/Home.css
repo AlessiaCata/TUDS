@@ -1,3 +1,59 @@
+/* Estilos para la sección de requisitos de adopción */
+.contenedor-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centra verticalmente el contenido */
+  gap: 30px;
+  padding: 40px;
+  background-color: #f0f2f3;
+}
+
+.lado-izquierdo {
+  flex: 1;
+  text-align: center; /* Centra el texto */
+  padding: 20px;
+  background-color: #bfc3c5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.elementor-heading-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+
+
+
+.requisitos-lista li {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 20px; /* Aumenta el espacio entre los ítems */
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.lado-derecho {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagen-adopcion {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */
+  max-width: 1000px; /* Establece un tamaño máximo para la imagen (puedes ajustar el valor según lo necesites) */
+  height: auto; /* Ajusta la altura automáticamente para mantener las proporciones */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Estilos para la sección dynamic-carousel-normal-desktop */
 .dynamic-carousel-normal-desktop {
   margin: 20px auto;
@@ -46,7 +102,6 @@
   margin-bottom: 10px;
   object-fit: cover;
 }
-
 
 .carousel-item h3 {
   font-size: 18px;
@@ -123,28 +178,3 @@
   margin: 10px auto 0;
   border-radius: 2px;
 }
-
-.contenedor-principal {
-  display: flex;
-  gap: 20px; /* Espacio entre las columnas */
-  align-items: center; /* Centra verticalmente el contenido */
-  padding: 20px;
-  background-color: #E3DAC9;
-}
-
-.lado-izquierdo {
-  flex: 1; /* Hace que ambas columnas ocupen el mismo espacio */
-  background-color: #E3DAC9;
-}
-
-.lado-derecho {
-  flex: 1;
-  display: flex;
-  justify-content: center; /* Centra horizontalmente la imagen */
-}
-
-.imagen-adopcion {
-  max-width: 100%; /* Asegura que la imagen no exceda el ancho de la columna */
-  height: auto;
-}
-
