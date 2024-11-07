@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 import '../css/Header.css';
+import Salir from './Salir.js'; 
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -18,16 +19,30 @@ const Header = () => {
       <button onClick={toggleSidebar} id="menu-button">
         ☰ Menu
       </button>
-      <span id="titulo">ADOPTAYA.COM</span>
+      
+      <Link to="/" id="titulo">
+        ADOPTAYA.COM
+      </Link>
+
       <div id="sidebar" className={isSidebarOpen ? 'open' : ''}>
         <ul>
-          {roles.includes("admin") && (
+          {roles.length > 0 ? ( // Verificar si el usuario está autenticado
             <>
-              <li><Link to="/UserList" className='item1'>Usuarios</Link></li>
-              <li><Link to="/UserForm" className='item3'>Agregar usuario</Link></li>
+              {roles.includes("admin") && (
+                <>
+                  <li><Link to="/UserList" className='item1'>Usuarios</Link></li>
+                  <li><Link to="/UserForm" className='item3'>Agregar usuario</Link></li>
+                </>
+              )}
+              {/* Botón Salir aparece solo si el usuario ha iniciado sesión */}
+              <li>
+                <Salir /> {/* El botón de Salir */}
+              </li>
             </>
+          ) : (
+            // Si el usuario no está autenticado, muestra solo el enlace de Login
+            <li><Link to="/Login" className='item2'>Login</Link></li>
           )}
-          <li><Link to="/Login" className='item2'>Login</Link></li>
         </ul>
       </div>
     </div>
@@ -35,3 +50,4 @@ const Header = () => {
 };
 
 export default Header;
+

@@ -1,0 +1,15 @@
+.salir-button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .salir-button:hover {
+    background-color: #f8d7da;
+  }
+  
