@@ -25,7 +25,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login setRoles={setRoles} />} />
+        <Route path="/" element={<Home setRoles={setRoles} />} />
         <Route path="/login" element={<Login setRoles={setRoles} />} />
         <Route path="/userform" element={<UserForm />} />
         <Route path="/userform/:uuid" element={<UserForm />} />

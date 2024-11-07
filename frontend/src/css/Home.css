@@ -124,3 +124,27 @@
   border-radius: 2px;
 }
 
+.contenedor-principal {
+  display: flex;
+  gap: 20px; /* Espacio entre las columnas */
+  align-items: center; /* Centra verticalmente el contenido */
+  padding: 20px;
+  background-color: #E3DAC9;
+}
+
+.lado-izquierdo {
+  flex: 1; /* Hace que ambas columnas ocupen el mismo espacio */
+  background-color: #E3DAC9;
+}
+
+.lado-derecho {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente la imagen */
+}
+
+.imagen-adopcion {
+  max-width: 100%; /* Asegura que la imagen no exceda el ancho de la columna */
+  height: auto;
+}
+

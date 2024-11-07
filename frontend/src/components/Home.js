@@ -1,4 +1,3 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Header from './Header';
 import 'swiper/css';
@@ -15,7 +14,9 @@ import perfil4 from '../images/perfil4.jpg';
 import perfil5 from '../images/perfil5.jpg';
 import perfil6 from '../images/perfil6.jpg';
 import perfil7 from '../images/perfil7.jpg'; 
-import perfil8 from '../images/perfil8.jpg'; 
+import perfil8 from '../images/perfil8.jpg';
+import perfil9 from '../images/perfil9.jpg'; 
+import ffotito from '../images/ffotito.jpg'; 
 import { Navigation } from 'swiper/modules';
 
 const HomeBody = () => {
@@ -27,7 +28,8 @@ const HomeBody = () => {
     { id: 5, nombre: 'Apolo', descripcion: 'Apegado y valiente: Pequeño, enérgico y muy cariñoso, Apolo es un Yorkshire Terrier que conquista corazones. Con su pelaje sedoso y ojos brillantes, siempre está listo para jugar o acurrucarse. Es valiente y protector a pesar de su tamaño, ideal para quienes buscan un amigo leal y lleno de vida.', imagen: perfil2 },
     { id: 6, nombre: 'Vitto', descripcion: 'Activo e inteligente: Vitto es un Border Collie lleno de inteligencia, energía y lealtad. Con su mirada intensa y su agilidad impresionante, es un compañero ideal para actividades al aire libre y deportes caninos. Siempre atento a las instrucciones, este perro es una mezcla perfecta de amor y dedicación. Además, su carácter afectuoso lo convierte en un gran amigo para toda la familia, siempre dispuesto a dar cariño y disfrutar de la compañía.', imagen: perfil6 },
     { id: 7, nombre: 'Michi', descripcion: 'Independiente y amoroso: Michi es un gatito que disfruta de su espacio pero siempre está listo para recibir cariño cuando lo desea. Es ideal para quienes buscan un amigo tranquilo y cariñoso.', imagen: perfil7 },
-    { id: 8, nombre: 'Ramón', descripcion: 'Agresivo y miedoso: Ramón es un gato con una personalidad única, que a veces puede ser un poco temperamental. Aunque le cuesta confiar en los demás y puede reaccionar con agresividad, con paciencia y cuidado, puede convertirse en un amigo fiel. Ideal para personas con experiencia en gatos y que comprendan la importancia de darle su espacio.', imagen: perfil8 }
+    { id: 8, nombre: 'Ramón', descripcion: 'Agresivo y miedoso: Ramón es un gato con una personalidad única, que a veces puede ser un poco temperamental. Aunque le cuesta confiar en los demás y puede reaccionar con agresividad, con paciencia y cuidado, puede convertirse en un amigo fiel. Ideal para personas con experiencia en gatos y que comprendan la importancia de darle su espacio.', imagen: perfil8 },
+    { id: 9, nombre: 'Laura', descripcion: 'Mimosa y apegada: Laura es una gata que adora la compañía y los momentos de cariño. Siempre busca estar cerca y disfrutar de mimos y caricias. Es perfecta para alguien que desee una mascota que les haga sentir acompañados y les llene de amor incondicional.', imagen: perfil9 }
   ];
 
   return (
@@ -71,21 +73,24 @@ const HomeBody = () => {
         </Swiper>
       </section>
 
-      {/* Sección de Mascotas en Adopción */}
-      <div className="perros-adopcion">
-        <h2>Mascotas en Adopción</h2>
-        <div className="lista-perros">
-          {mascotas.map(mascota => (
-            <div key={mascota.id} className="perro-item">
-              <img src={mascota.imagen} alt={mascota.nombre} className="foto-perro" />
-              <h3>{mascota.nombre}</h3>
-              <p>{mascota.descripcion}</p>
-            </div>
-          ))}
-        </div>
+    <div className="contenedor-principal">
+      <div className="lado-izquierdo">
+        <h2 class="elementor-heading-title elementor-size-default" > Requisitos de adopción </h2>
+        <p>Los animales serán entregados tras una entrevista telefónica con nuestro equipo de adopción.</p>
+        <p>Los adoptantes deberán suscribir un contrato de adopción, comprometiéndose a garantizar una tenencia responsable a lo largo de la vida del animal.</p>
+        <p>Los animales mayores de 6 meses se entregarán castrados. En el caso de adoptar un cachorro más joven, el adoptante se compromete a castrarlo entre los 6 meses y el primer año de edad, de manera obligatoria.</p>
+        <p>Las adopciones están restringidas a la zona de Capital Federal y Gran Buenos Aires, Argentina, sujeto a consideración.</p>
+        <p>Nos reservamos el derecho de aprobar o rechazar una postulación según los criterios y valores de nuestra organización.</p>
+        <p>Los datos proporcionados por el postulante son confidenciales y se utilizan exclusivamente para el proceso de adopción, sin transferirse a terceros en ningún caso.</p>
+        <p> Si ya lo decidiste, y te sentís capacitado, es momento de comenzar con la postulación para elegir a tu nuevo compañero de vida.</p>
+      </div>
+      <div className="lado-derecho">
+        <img src={ffotito} alt="Imagen" className="imagen-adopcion" />
       </div>
     </div>
+  </div>
   );
+  
 };
 
 const Home = () => (
@@ -96,6 +101,7 @@ const Home = () => (
 );
 
 export default Home;
+
 
 
 
