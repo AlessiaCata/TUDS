@@ -9,13 +9,13 @@ export function configureMiddlewares(app) {
 
   const origin = `http://localhost:${conf.clientPort}`;
   const corsOptions = {
-    origin,
+    origin: "*",
     credentials: true,
     optionSuccessStatus: 200
   };
 
   app.use(cors(corsOptions));
-
+  /*
   app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Headers', true);
@@ -24,7 +24,7 @@ export function configureMiddlewares(app) {
     next();
   }
   );
-
+ */
   app.use('/', express.json());
 
    app.use(autorizationMiddleware);
