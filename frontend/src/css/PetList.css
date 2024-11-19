@@ -1,0 +1,44 @@
+.table-data-list {
+  width: 100%;
+  border-collapse: collapse; /* Asegura que los bordes se dibujen como una sola línea */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  table-layout: fixed; /* Asegura anchos uniformes para las columnas */
+  margin-top: 70px;
+}
+
+.table-data-list th,
+.table-data-list td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd; /* Cambia a border para que las líneas sean uniformes */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Muestra los textos largos con puntos suspensivos */
+  white-space: nowrap;
+}
+
+.table-data-list th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.table-data-list td {
+  background-color: #fff; /* Asegura que el fondo sea consistente */
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center; /* Centra los íconos verticalmente */
+  border: none; /* Elimina cualquier borde extra */
+}
+
+.icon.button {
+  cursor: pointer;
+  color: #007bff; /* Color azul para los íconos */
+  transition: color 0.3s;
+}
+
+.icon.button:hover {
+  color: #0056b3;
+}

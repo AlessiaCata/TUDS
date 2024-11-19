@@ -75,7 +75,7 @@ export class UserService {
   async update(uuid, data) {
     data = { ...data };
     data.updatedAt = new Date();
-    return this.userData.update({ uuid }, data); // Cambiado petData a userData
+    return this.userData.update({ uuid }, data); 
   }
 }
 

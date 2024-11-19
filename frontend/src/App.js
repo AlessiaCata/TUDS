@@ -5,8 +5,10 @@ import UserForm from './components/UserForm';
 import Login from './components/Login';
 import UserList from './components/UserList';
 import Home from './components/Home';
+import PetList from './components/PetList';
+import PetForm from './components/PetForm';
+import ListaPet from './components/ListaPet';
 
-//import Home from './components/Home'; 
 
 function App() {
   const [roles, setRoles] = useState([]);
@@ -31,7 +33,12 @@ function App() {
         <Route path="/userform" element={<UserForm />} />
         <Route path="/userform/:uuid" element={<UserForm />} />
         <Route path="/userlist" element={<UserList />} />
-        <Route path="/Home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        
+        {/* Rutas para mascotas con uuid */}
+        <Route path="/petlist" element={<ListaPet />} />
+        <Route path="/petform" element={<PetForm />} />
+        <Route path="/petform/:uuid" element={<PetForm />} />
       </Routes>
     </BrowserRouter>
   );

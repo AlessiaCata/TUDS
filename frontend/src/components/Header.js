@@ -32,6 +32,8 @@ const Header = () => {
                 <>
                   <li><Link to="/UserList" className='item1'>Usuarios</Link></li>
                   <li><Link to="/UserForm" className='item3'>Agregar usuario</Link></li>
+                  <li><Link to="/PetForm" className='item4'>Agregar Mascotas</Link></li>
+                  <li><Link to="/petlist" className='item5'>Mascotas</Link></li>
                 </>
               )}
               {/* Botón Salir aparece solo si el usuario ha iniciado sesión */}

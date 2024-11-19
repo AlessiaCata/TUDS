@@ -6,7 +6,7 @@ export default function Background({children}) {
     <View style={styles.container}>
         <ImageBackground
             style={styles.background}
-            source= {require ('../assets/fondo.jpg')}
+            source= {require ('../assets/patitas.jpg')}
         >
             {children}
         </ImageBackground>
